@@ -1,7 +1,6 @@
 # Handwritten Digit Classification using PyTorch
 
-A beginner-friendly deep learning project that classifies handwritten digits from the MNIST dataset using PyTorch.  
-This project starts with a simple fully connected neural network and then upgrades the model to a Convolutional Neural Network (CNN) for better image classification performance.
+A beginner-friendly deep learning project that classifies handwritten digits from the MNIST dataset using PyTorch. This project starts with a simple fully connected neural network and then upgrades the model to a Convolutional Neural Network (CNN) for better image classification performance.
 
 ---
 
@@ -24,6 +23,8 @@ The project includes two versions:
 - PyTorch
 - TorchVision
 - Matplotlib
+- Streamlit
+- Pillow
 - MNIST Dataset
 
 ---
@@ -38,10 +39,15 @@ Each image has:
 28 x 28 pixels
 1 color channel
 10 classes: digits 0 to 9
-Model 1: Fully Connected Neural Network
+```
+
+---
+
+## Model 1: Fully Connected Neural Network
 
 The first model uses a simple neural network architecture:
 
+```text
 Input Image 28x28
 → Flatten Layer
 → Linear Layer
@@ -49,16 +55,13 @@ Input Image 28x28
 → Linear Layer
 → ReLU
 → Output Layer with 10 classes
+```
 
-This model helped me understand the basic deep learning workflow:
+This model helped me understand the basic deep learning workflow, including dataset loading, tensor conversion, model creation, training, evaluation, and model saving.
 
-Loading a dataset
-Converting images into tensors
-Creating a neural network
-Training the model
-Evaluating accuracy
-Saving the trained model
-Model 2: Convolutional Neural Network
+---
+
+## Model 2: Convolutional Neural Network
 
 The second model upgrades the project to a CNN.
 
@@ -66,6 +69,7 @@ CNNs are better for image classification because they can learn spatial patterns
 
 CNN architecture:
 
+```text
 Input Image
 → Convolution Layer
 → ReLU
@@ -75,84 +79,176 @@ Input Image
 → Max Pooling
 → Fully Connected Layers
 → Output Prediction
+```
 
-Results
+---
+
+## Results
 
 The CNN model achieved strong accuracy on the MNIST test dataset.
 
+```text
 Final CNN Test Accuracy: 98.67%
+```
 
+---
 
-Training Loss
+## Training Loss
 
 The training loss decreased over epochs, showing that the model was learning from the training data.
-```
+
 ![CNN Training Loss](cnn_training_loss.png)
 
-```text
+---
 
-Test Accuracy
+## Test Accuracy
 
-The test accuracy increased over epochs, showing that the model was improving its prediction performance.
+The test accuracy increased over epochs, showing that the CNN model improved its prediction performance.
 
-Prediction Example
+![CNN Test Accuracy](cnn_test_accuracy.png)
+
+---
+
+## Prediction Example
 
 The model can predict handwritten digits from the test dataset.
 
-Files in This Project
+![CNN Prediction Example](cnn_prediction_example.png)
+
+---
+
+## Confusion Matrix
+
+The confusion matrix shows how well the CNN model classified each digit from 0 to 9.
+
+![CNN Confusion Matrix](cnn_confusion_matrix.png)
+
+---
+
+## Streamlit Web App
+
+I also created a simple Streamlit web app where users can upload a handwritten digit image and the trained CNN model predicts the digit.
+
+The app allows users to:
+
+- Upload a digit image
+- Preview the uploaded image
+- Get the predicted digit
+- View the prediction confidence
+
+### Run the App Locally
+
+```bash
+python -m streamlit run app.py
+```
+
+or
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## Files in This Project
+
+```text
 pytorch-mnist-classifier/
 │
+├── app.py
 ├── mnist_classifier.py
 ├── mnist_cnn.py
 ├── mnist_cnn_with_plots.py
+├── mnist_cnn_model.pth
 ├── cnn_training_loss.png
 ├── cnn_test_accuracy.png
 ├── cnn_prediction_example.png
+├── cnn_confusion_matrix.png
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+```
 
-How to Run This Project
-1. Clone the repository
+---
+
+## How to Run This Project
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/shahnajmou/pytorch-mnist-classifier.git
 cd pytorch-mnist-classifier
-2. Create a virtual environment
+```
+
+### 2. Create a virtual environment
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
-3. Install dependencies
+```
+
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
-4. Run the basic neural network
+```
+
+### 4. Run the basic neural network
+
+```bash
 python mnist_classifier.py
-5. Run the CNN model
+```
+
+### 5. Run the CNN model
+
+```bash
 python mnist_cnn.py
-6. Run the CNN model with plots
+```
+
+### 6. Run the CNN model with plots
+
+```bash
 python mnist_cnn_with_plots.py
+```
 
+### 7. Run the Streamlit app
 
-What I Learned
+```bash
+python -m streamlit run app.py
+```
+
+---
+
+## What I Learned
 
 Through this project, I learned:
 
-How to use PyTorch for image classification
-How to load and preprocess the MNIST dataset
-How tensors are used in deep learning
-How to build a fully connected neural network
-How to build a CNN model
-How convolution and pooling layers work
-How to train and evaluate a model
-How to visualize training loss and test accuracy
-How to prepare a deep learning project for GitHub
+- How to use PyTorch for image classification
+- How to load and preprocess the MNIST dataset
+- How tensors are used in deep learning
+- How to build a fully connected neural network
+- How to build a CNN model
+- How convolution and pooling layers work
+- How to train and evaluate a model
+- How to visualize training loss and test accuracy
+- How to create a simple Streamlit app for model prediction
+- How to prepare a deep learning project for GitHub
 
-Future Improvements
+---
+
+## Future Improvements
 
 Possible future improvements include:
 
-Add a Streamlit web app for live digit prediction
-Allow users to upload their own handwritten digit images
-Add a confusion matrix
-Compare fully connected neural network vs CNN accuracy
-Train on a more complex image dataset such as Fashion-MNIST or CIFAR-10
+- Improve the Streamlit app interface
+- Allow users to draw digits directly in the app
+- Compare fully connected neural network vs CNN accuracy
+- Add more evaluation metrics
+- Train on a more complex image dataset such as Fashion-MNIST or CIFAR-10
+- Deploy the app online
 
-Project Status
+---
 
-Completed basic neural network, CNN upgrade, model evaluation, and training visualizations.
+## Project Status
+
+Completed basic neural network, CNN upgrade, model evaluation, training visualizations, confusion matrix, and Streamlit app.
