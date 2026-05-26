@@ -1,10 +1,12 @@
+# Handwritten Digit Classification using PyTorch
+
+A PyTorch-based image classification project that compares a fully connected neural network and a convolutional neural network on the MNIST handwritten digit dataset.
+
+---
+
 ## Summary
 
-This project demonstrates a complete beginner-friendly deep learning workflow using PyTorch, including model training, CNN-based image classification, evaluation visualizations, confusion matrix analysis, and a simple Streamlit app for user interaction.
-
-
-# Handwritten Digit Classification using PyTorch
-A beginner-friendly deep learning project that classifies handwritten digits from the MNIST dataset using PyTorch. This project starts with a simple fully connected neural network and then upgrades the model to a Convolutional Neural Network (CNN) for better image classification performance.
+This project demonstrates a complete deep learning workflow using PyTorch, including model training, CNN-based image classification, evaluation visualizations, confusion matrix analysis, and a simple Streamlit app for user interaction.
 
 ---
 
