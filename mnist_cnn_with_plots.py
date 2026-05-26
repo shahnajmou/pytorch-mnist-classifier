@@ -4,6 +4,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
 # Convert images to tensors
@@ -64,6 +65,8 @@ epochs = 5
 
 train_losses = []
 test_accuracies = []
+all_labels = []
+all_predictions = []
 
 for epoch in range(epochs):
     model.train()
@@ -94,6 +97,17 @@ for epoch in range(epochs):
 
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
+    with torch.no_grad():
+        for images, labels in test_loader:
+            outputs = model(images)
+            _, predicted = torch.max(outputs, 1)
+
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+
+            if epoch == epochs - 1:
+                all_labels.extend(labels.numpy())
+                all_predictions.extend(predicted.numpy())
 
     accuracy = 100 * correct / total
     test_accuracies.append(accuracy)
@@ -141,6 +155,17 @@ plt.axis("off")
 plt.savefig("cnn_prediction_example.png")
 plt.show()
 
+# Plot confusion matrix
+cm = confusion_matrix(all_labels, all_predictions)
+display = ConfusionMatrixDisplay(confusion_matrix=cm)
+
+plt.figure(figsize=(8, 8))
+display.plot()
+plt.title("CNN Confusion Matrix")
+plt.savefig("cnn_confusion_matrix.png")
+plt.close()
+
+print("Confusion matrix saved as cnn_confusion_matrix.png")
 
 # Save CNN model
 torch.save(model.state_dict(), "mnist_cnn_model.pth")
