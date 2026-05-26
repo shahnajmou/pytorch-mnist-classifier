@@ -86,8 +86,10 @@ Final CNN Test Accuracy: 98.67%
 Training Loss
 
 The training loss decreased over epochs, showing that the model was learning from the training data.
+```
 ![CNN Training Loss](cnn_training_loss.png)
 
+```text
 
 Test Accuracy
 
