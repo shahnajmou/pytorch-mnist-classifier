@@ -61,3 +61,27 @@ pip install -r requirements.txt
 Run the project:
 
 python mnist_classifier.py
+
+
+## CNN Upgrade
+
+I also upgraded the original fully connected neural network into a Convolutional Neural Network (CNN).
+
+The CNN architecture includes:
+
+- Convolutional layers for feature extraction
+- ReLU activation functions
+- Max pooling layers for dimensionality reduction
+- Fully connected layers for final digit classification
+
+CNN models are more suitable for image classification because they can learn spatial features such as edges, curves, and shapes.
+
+## CNN Results
+
+CNN Test Accuracy: 98.99%
+
+pip install -r requirements.txt
+
+Run the project:
+
+python mnist_classifier.py
