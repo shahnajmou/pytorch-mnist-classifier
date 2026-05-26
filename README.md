@@ -1,5 +1,9 @@
-# Handwritten Digit Classification using PyTorch
+## Summary
 
+This project demonstrates a complete beginner-friendly deep learning workflow using PyTorch, including model training, CNN-based image classification, evaluation visualizations, confusion matrix analysis, and a simple Streamlit app for user interaction.
+
+
+# Handwritten Digit Classification using PyTorch
 A beginner-friendly deep learning project that classifies handwritten digits from the MNIST dataset using PyTorch. This project starts with a simple fully connected neural network and then upgrades the model to a Convolutional Neural Network (CNN) for better image classification performance.
 
 ---
@@ -136,6 +140,10 @@ The app allows users to:
 - Get the predicted digit
 - View the prediction confidence
 
+### App Preview
+
+![Streamlit App Screenshot](streamlit_app_screenshot.png)
+
 ### Run the App Locally
 
 ```bash
@@ -153,6 +161,7 @@ streamlit run app.py
 ## Files in This Project
 
 ```text
+```text
 pytorch-mnist-classifier/
 │
 ├── app.py
@@ -164,6 +173,7 @@ pytorch-mnist-classifier/
 ├── cnn_test_accuracy.png
 ├── cnn_prediction_example.png
 ├── cnn_confusion_matrix.png
+├── streamlit_app_screenshot.png
 ├── README.md
 ├── requirements.txt
 └── .gitignore
