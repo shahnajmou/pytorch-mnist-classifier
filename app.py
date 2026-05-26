@@ -1,7 +1,8 @@
 import streamlit as st
 import torch
 import torch.nn as nn
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, UnidentifiedImageError
+from io import BytesIO
 import torchvision.transforms as transforms
 
 
@@ -42,26 +43,34 @@ model.eval()
 uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file).convert("L")
+    try:
+        image_bytes = uploaded_file.getvalue()
+        image = Image.open(BytesIO(image_bytes)).convert("L")
 
-    st.subheader("Uploaded Image")
-    st.image(image, width=200)
+        st.subheader("Uploaded Image")
+        st.image(image, width=200)
 
-    # Prepare image for MNIST format
-    image = ImageOps.invert(image)
-    image = image.resize((28, 28))
+        # Convert image to MNIST-like format
+        image = ImageOps.invert(image)
+        image = image.resize((28, 28))
 
-    transform = transforms.Compose([
-        transforms.ToTensor()
-    ])
+        transform = transforms.Compose([
+            transforms.ToTensor()
+        ])
 
-    image_tensor = transform(image).unsqueeze(0)
+        image_tensor = transform(image).unsqueeze(0)
 
-    with torch.no_grad():
-        output = model(image_tensor)
-        probabilities = torch.softmax(output, dim=1)
-        confidence, predicted = torch.max(probabilities, 1)
+        with torch.no_grad():
+            output = model(image_tensor)
+            probabilities = torch.softmax(output, dim=1)
+            confidence, predicted = torch.max(probabilities, 1)
 
-    st.subheader("Prediction")
-    st.write(f"Predicted Digit: **{predicted.item()}**")
-    st.write(f"Confidence: **{confidence.item() * 100:.2f}%**")
+        st.subheader("Prediction")
+        st.success(f"Predicted Digit: {predicted.item()}")
+        st.write(f"Confidence: **{confidence.item() * 100:.2f}%**")
+
+    except UnidentifiedImageError:
+        st.error("The uploaded file could not be recognized as an image. Please upload a valid PNG, JPG, or JPEG file.")
+
+    except Exception as e:
+        st.error(f"Something went wrong: {e}")
